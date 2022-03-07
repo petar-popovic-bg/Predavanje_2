@@ -1,6 +1,6 @@
 import tweepy
 import json
-# Consumer key i secret geisemo na twitter stranici (Aplikacija)
+# Consumer key i secret generisemo na twitter stranici (Aplikacija)
 consumer_key = 'Hit30sfZfVKpgFBTvLdtOJvRd'  # Api Key
 consumer_secret = 'CWXkO2b9paBGcQaXhPdHXJYqViM8gjrUFKxAK1bRcyUegCRMT8'  # Api Secret
 
@@ -15,24 +15,17 @@ auth = tweepy.OAuth1UserHandler(
     consumer_key, consumer_secret, access_token, access_token_secret
 )
 
-# Setting wait_on_rate_limit to True when initializing API will initialize an
-# instance, called api here, that will automatically wait, using time.sleep,
-# for the appropriate amount of time when a rate limit is encountered
+# Kreiramo api objekat i postavljamo wait_on_limit na True kako bi u slučaju do dostignemo rate limit kod sačekao,
+# pre sledećeg korišćenja apija
 api = tweepy.API(auth, wait_on_rate_limit=True)
-
-# This will search for Tweets with the query "Twitter", returning up to the
-# maximum of 100 Tweets per request to the Twitter API
-
-# Once the rate limit is reached, it will automatically wait / sleep before
-# continuing
 
 screen_name = 'Blic_online'
 tweets = api.user_timeline(screen_name=screen_name,
-                           # 200 is the maximum allowed count
+                           # 200 je max
                            count=200,
+                           # Ne želimo retweetove
                            include_rts=False,
-                           # Necessary to keep full_text
-                           # otherwise only the first 140 words are extracted
+                           # Potrebno kako bi dobili ceo tekst, u protivnom dobicemo samo prvih 140 karaktera
                            tweet_mode='extended'
                            )
 
@@ -49,9 +42,12 @@ while True:
                                # otherwise only the first 140 words are extracted
                                tweet_mode='extended'
                                )
+    # Ako je broj dobavljenih tweetova 0 izlazimo iz petlje
     if len(tweets) == 0:
         break
+    # Postavljamo oldest_id na poslednji dobijeni tweet
     oldest_id = tweets[-1].id
+    # Nove tweetove dodajemo u listu svih tweetova
     all_tweets.extend(tweets)
     print('Preuzeto tweetova: ', len(all_tweets))
 
