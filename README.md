@@ -4,7 +4,7 @@
 Ovaj projekat je deo NlpWeb radionice i biće korišćen u svrhu predavanja iz oblasti grebanja weba i korišćenja twitter API-ja.
 
 U ovom primeru koristimo Python biblioteku `tweepy` kako bismo koristili besplatan twitterov API. U svrhu ovog predavanja kreiran je testni twitter nalog kako bi se dobili potrebni kredencijali, koji će kasnije biti ugašen.
-Biblioteka može da koristi više različitih endponit-a a u ovom predavanju videćemo na primeru kako preuzeti sve javne tweet-ove jednog naloga i kako pratiti stream tweetova.
+Biblioteka može da koristi više različitih endpoint-a a u ovom predavanju videćemo na primeru kako preuzeti sve javne tweet-ove jednog naloga i kako pratiti stream tweetova.
 
 ### Linkovi
 
